@@ -14,6 +14,7 @@ def login(veterinario_data:VeterinarioLogin,db:Session = Depends(get_db)):
         return {"message":"Usuario no encontrado o contraseña invalida"} 
     token = encode_token({"sub":veterinario.username,"id":veterinario.id})
     return {
+        "user":veterinario_data,
         "access_token":token,
         "token_type":"bearer"
         }
