@@ -1,15 +1,20 @@
 import '../../styles/Login-Register/Login.css'
 import {useState,useEffect} from 'react'
 import {sendDataLogin} from '../../apis'
-
+import {useAuth} from '../../Context/AuthProvider'
+import { useNavigate } from "react-router-dom";  // Importa useNavigat
 
 function Login() {
+    const navigate = useNavigate();  // Usamos el hook para obtener la función de navegación
+    //estado de autenticacion
+    const { setIsAuthenticated }=useAuth()
+
     const [userName, setUserName]=useState("");
     const [password, setPassword]=useState("");
     const handleSubmit =(e)=>{
         e.preventDefault();
         //LLAMAR API LOGIN
-        sendDataLogin(userName,password);
+        sendDataLogin(userName,password,setIsAuthenticated,navigate);
 
     }
 
