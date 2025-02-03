@@ -9,8 +9,10 @@ import About from './Components/About'
 import Register from './Components/Login-Register/Register'
 import Login from './Components/Login-Register/Login'
 // FUNCIONES PROTECCION DE RUTAS
+import { RequireAuth } from "./ProteccionRutas";
 //OPCIONES VETERINARIO
-import Mascota from './Components/Apartado-Veterinario/Mascota'
+import Mascota from './Components/Apartado-Veterinario/OpcionesVeterinario/Mascota'
+import HomeVeterinario from './Components/Apartado-Veterinario/HomeVeterinario'
 
 
 function App() {
@@ -22,10 +24,11 @@ function App() {
       <div>
         <Routes>
           <Route path='/' element={<Inicio/>}/>
+          <Route path='/homeveterinario' element={<RequireAuth><HomeVeterinario/></RequireAuth>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/mascota' element={<Mascota/>}/>
+          <Route path='/mascota' element={<RequireAuth><Mascota/></RequireAuth>}/>
 
 
         </Routes>

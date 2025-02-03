@@ -18,7 +18,7 @@
 4. pip install -r requirements.txt
 5. ejecutar servidor: *uvicorn main:app --reload*
 
-## Node.js
+## dependencias de Node.js
 
 1. npm install express (ejecutarlo en la rama node)
 2. npm install cors
