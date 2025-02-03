@@ -6,52 +6,75 @@ require("dotenv").config()
 
 
 
-
 const app = express()
+const FASTAPI_BASE_URL = process.env.FASTAPI_BASE_URL;
 
 // Middleware para habilitar CORS
 app.use(cors())
 app.use(express.json());
 
+// Middleware para logging
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path} - Body:`, req.body);
+    next();
+});
 
+// ruta para la validacion de usuario con FastAPI
 app.post('/register', async (req, res) => {
-    const { username, password } = req.body // aqui se extrae la información del body
-    //validar credenciales
-    if (username && password) {
-        try {
-            // Crear el token
-            const credentials = { username: username };
+    const { username, password } = req.body;
 
-            const accessToken = generateAccessToken(credentials); // Generar el token
-
-            // Enviar el username a la API de FastAPI
-            const fastApiUrl = `http://localhost:8000/api/v1/get-user/${username}`;
-            const fastApiResponse = await axios.get(fastApiUrl);
-
-            // Si FastAPI valida al usuario, respondemos con éxito
-            if (fastApiResponse.status === 200) {
-                return res.json({
-                    message: "User created and validated successfully",
-                    token: accessToken,
-                    userData: fastApiResponse.data, // Información adicional que devuelve FastAPI
-                });
-            }
-        } catch (error) {
-            // Si FastAPI devuelve un error
-            if (error.response && error.response.status === 404) {
-                return res.status(404).json({ error: 'Usuario no encontrado en FastAPI' });
-            }
-            console.error("Error al comunicarse con FastAPI:", error.message);
-            return res.status(500).json({ error: 'Error interno del servidor' });
-        }
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Credenciales inválidas' });
     }
-    return res.status(400).json({ error: 'Credenciales inválidas' });
-})
+
+    try {
+        // envio los datos de las credenciales a Fastapi
+        const fastApiResponse = await axios.post(`${process.env.FASTAPI_BASE_URL}/api/v1/veterinario/`, {
+            username: username,
+            password: password
+        });
+
+        // si FastAPI valida, crear el token con los datos adicionales
+        const userData = fastApiResponse.data // datos de la respuesta de FastAPI
+        const tokenPayload = {
+            username: userData.username,
+            nombres: userData.nombres,
+            apellidos: userData.apellidos,
+            direccion: userData.direccion,
+            telefono: userData.telefono,
+            tarjeta_profesional: userData.tarjeta_profesional,
+            id: userData.id
+        };
+
+        const accessToken = generateAccessToken(tokenPayload)
+        const refreshToken = generateRefreshToken(tokenPayload)
+
+        return res.json({
+            message: "User validated successfully",
+            token: accessToken,
+            refreshtoken: refreshToken,
+            userData: userData
+        });
+    } catch (error) {
+        if (error.response) {
+            const statusCode = error.response.status;
+            return res.status(statusCode).json({ error: `Error ${statusCode}: ${error.response.data.message || 'Ocurrió un error'}` });
+        }
+    // return res.status(500).json({ error: 'Error al comunicarse con FastAPI' });
+    console.error("Error al comunicarse con FastAPI:", error.message)
+    res.status(500).json({ error: "Error interno del servidor"})
+    }
+});
 
 
 function generateAccessToken(credentials) {
     return jwt.sign(credentials, process.env.SECRET, { expiresIn: '5m' });
 }
+
+function generateRefreshToken(credentials) {
+    return jwt.sign(credentials, process.env.SECRET, { expiresIn: '7d' });
+}
+
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
