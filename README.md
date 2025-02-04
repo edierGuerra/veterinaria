@@ -7,6 +7,9 @@
   - npm install react-router-dom
   - npm install axios
   - npm install react-icons
+  - npm install @mui/icons-material
+  - npm install aos
+
 
 
 
