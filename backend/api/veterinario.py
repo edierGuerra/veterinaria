@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from database import get_db
-from schemas import Login,VeterinarioResponse,VeterinarioCreate
+from schemas import Login,VeterinarioResponse,VeterinarioCreate,VeterinarioUpdate
 from models import Veterinario
-from crud import create_veterinarian
+from crud import create_veterinarian, update_veterinarian
 
 router = APIRouter(prefix="/api/v1/veterinario",tags=["veterinario"])
 
 @router.post("/",response_model=VeterinarioResponse)
-def valide_veterinarian(form_data:Login, db:Session = Depends(get_db)):
+def login_veterinarian(form_data:Login, db:Session = Depends(get_db)):
     user = db.query(Veterinario).filter(Veterinario.username == form_data.username, Veterinario.password == form_data.password).first()
     if not user: 
         return {"message":"nombre de usuario o contraseña incorrectos"}
@@ -26,5 +26,17 @@ def create_veterinarians(form_data:VeterinarioCreate,db:Session = Depends(get_db
         phone = form_data.telefono,
         professional_card=form_data.tarjeta_profesional
     )
-    print(veterinarian)
+    return veterinarian
+
+@router.put("/update", response_model=VeterinarioResponse)
+def update_veterinarians(form_data:VeterinarioUpdate,db:Session = Depends(get_db)): 
+    veterinarian = update_veterinarian(
+        db = db,
+        id_veterinarian=form_data.id,
+        new_names=form_data.nombres,
+        new_last_names=form_data.apellidos,
+        new_phone=form_data.telefono,
+        new_address=form_data.direccion
+    )
+
     return veterinarian
