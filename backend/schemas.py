@@ -31,6 +31,13 @@ class VeterinarioBase(BaseModel):
 class VeterinarioCreate(VeterinarioBase):
     password: str = Field(max_length=15, min_length=10)
 
+class VeterinarioUpdate(BaseModel):
+    id: int = Field(..., description="ID del veterinario")
+    nombres: Optional[str] = Field(None, min_length=1, max_length=100, description="Nombres del veterinario")
+    apellidos: Optional[str] = Field(None, min_length=1, max_length=100, description="Apellidos del veterinario")
+    direccion: Optional[str] = Field(None, max_length=150, description="Dirección del veterinario")
+    telefono: Optional[str] = Field(None, min_length=7, max_length=15, description="Teléfono del veterinario")
+
 class VeterinarioResponse(VeterinarioBase):
     id: int = Field(..., description="ID del veterinario")
     username: str = Field(max_length=10, min_length=5)
