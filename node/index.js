@@ -1,9 +1,8 @@
 const express = require('express')
 const cors = require('cors')
 const axios = require('axios'); // Librería para hacer solicitudes HTTP
-const jwt = require('jsonwebtoken')
-require("dotenv").config()
-
+const jwt = require('jsonwebtoken');
+require("dotenv").config();
 
 
 const app = express()
@@ -20,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 // ruta para la validacion de usuario con FastAPI
-app.post('/register', async (req, res) => {
+app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -32,7 +31,12 @@ app.post('/register', async (req, res) => {
         const fastApiResponse = await axios.post(`${process.env.FASTAPI_BASE_URL}/api/v1/veterinario/`, {
             username: username,
             password: password
+        },{
+            headers:{
+                'Content-Type':'application/json'
+            }
         });
+        console.log("enviando a fazt api")
 
         // si FastAPI valida, crear el token con los datos adicionales
         const userData = fastApiResponse.data // datos de la respuesta de FastAPI

@@ -4,7 +4,7 @@ nav {
     left: 0;
     z-index: 1000;
     position: sticky;
-    background-color: #9d703b; /* Color de fondo */
+    background-color: #68180d; /* Color de fondo */
     padding: 15px; /* Espaciado interno */
     display: flex; /* Alineación horizontal de los enlaces */
     align-items: center;

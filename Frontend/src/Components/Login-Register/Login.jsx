@@ -1,7 +1,7 @@
-import '../../styles/Login-Register/Login.css'
-import {useState,useEffect} from 'react'
-import {sendDataLogin} from '../../apis'
-import {useAuth} from '../../Context/AuthProvider'
+import '../../styles/Login-Register/Login.css';
+import {useState,useEffect} from 'react';
+import {sendDataLogin} from '../../apis';
+import {useAuth} from '../../Context/AuthProvider';
 import { useNavigate } from "react-router-dom";  // Importa useNavigat
 
 function Login() {
