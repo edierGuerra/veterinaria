@@ -81,7 +81,7 @@ app.put("/actualizarVeterinario", async (req, res) => {
 
     try {
         // envio los datos de las credenciales a Fastapi
-        const fastApiResponse = await axios.put(`${process.env.FASTAPI_BASE_URL}/api/v1/actualizar/veterinario/${id}`, {
+        const fastApiResponse = await axios.put(`${process.env.FASTAPI_BASE_URL}/api/v1/actualizar/veterinario/`, {
             names: names,
             lastNames: lastNames,
             address: address,
