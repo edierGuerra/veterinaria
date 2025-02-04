@@ -70,6 +70,49 @@ app.post('/login', async (req, res) => {
     }
 });
 
+// falta asignar un id a la respuesta de fastapi
+//ruta para solicitar datos del veterinario que se van a actualizar y enviarlos a fastapi
+app.put("/actualizarVeterinario", async (req, res) => {
+    const { names, lastNames, address, phone, ProfessionalCard } = req.body;
+
+    // if (!id || !names || !lastNames || !address || !phone || !professionalCard) {
+    //     return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el veterinario' });
+    // }
+
+    try {
+        // envio los datos de las credenciales a Fastapi
+        const fastApiResponse = await axios.put(`${process.env.FASTAPI_BASE_URL}/api/v1/actualizar/veterinario/${id}`, {
+            names: names,
+            lastNames: lastNames,
+            address: address,
+            phone: phone,
+            professionalCard: ProfessionalCard
+        },{
+            headers:{
+                'Content-Type':'application/json'
+            }
+        });
+        console.log("enviando a fazt api")
+
+        // si FastAPI valida, crear el token con los datos adicionales
+        const userData = fastApiResponse.data // datos de la respuesta de FastAPI
+
+        return res.json({
+            message: "updated vet details",
+            userData: userData
+        });
+    } catch (error) {
+        if (error.response) {
+            const statusCode = error.response.status;
+            return res.status(statusCode).json({ error: `Error ${statusCode}: ${error.response.data.message || 'Ocurrió un error'}` });
+        }
+    // return res.status(500).json({ error: 'Error al comunicarse con FastAPI' });
+    console.error("Error al comunicarse con FastAPI:", error.message)
+    res.status(500).json({ error: "Error interno del servidor"})
+    }
+});
+
+
 
 function generateAccessToken(credentials) {
     return jwt.sign(credentials, process.env.SECRET, { expiresIn: '5m' });
