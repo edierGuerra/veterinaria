@@ -1,0 +1,254 @@
+.container-home{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-items: center;
+    align-items: center;
+    gap: 40px;
+    background-color: #6f8a43;
+}
+
+
+
+.container-info{
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 70px;
+    padding-bottom: 140px;
+
+
+}
+.container-info h1{
+    font-size: 65px;
+    color: #fff;
+    font-weight: bold;
+    
+}
+.container-opciones{
+    margin-top: 15px;
+    position: relative;
+    margin-left: 850px;
+}
+.container-opciones h2{
+    padding: 3px;
+    border-radius: 5px;
+    color: #fff;
+
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.container-desplegables{
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+details{
+    transition: all 0.3s ease-in-out;
+}
+/* Desplegables */
+.desplegable-registrar{
+    margin-top: 15px;
+    cursor: pointer;
+    color: black;
+}
+.desplegable-consultar{
+    margin-top: 15px;
+    cursor: pointer;
+    color: black;
+}
+.desplegable-actualizar{
+    margin-top: 15px;
+    cursor: pointer;
+    color: black;
+}
+
+
+/* Aplicando el before */
+.desplegable-registrar::before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: left;
+    height: 2px;
+    width: 29%;
+    background-color: #fff;
+    transition: transform 0.5s ease-in-out;
+
+}
+.desplegable-registrar:hover::before{
+    transform: translateY(-50%) scale(1);
+    
+}
+.desplegable-consultar::before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 100px;
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: left;
+    height: 2px;
+    width: 30%;
+    background-color: #fff;
+    transition: transform 0.5s ease-in-out;
+}
+.desplegable-consultar:hover::before{
+    transform: translateY(-50%) scale(1);
+
+}
+.desplegable-actualizar::before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 202px;
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: left;
+    height: 2px;
+    width: 30%;
+    background-color: #fff;
+    transition: transform 0.5s ease-in-out;
+}
+.desplegable-actualizar:hover::before{
+    transform: translateY(-50%) scale(1);
+    
+}
+/* Opciones */
+.opciones-registrar{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 70px;
+    background-color:#434f54;
+    padding: 5px;
+    opacity: 1px;
+    color: #fff;
+    border-radius:10px;
+
+}
+.opciones-consultar{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    margin-left: 70px;
+    background-color:#434f54;
+    opacity: 1px;
+    padding: 5px;
+    color: #fff;
+    width: 170px;
+    border-radius:10px;
+
+}
+.opciones-actualizar{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    margin-left: 70px;
+    background-color:#434f54;
+    opacity: 1px;
+    padding: 5px;
+    color: #fff;
+    width: 170px;
+    border-radius:10px;
+
+}
+/* Contenedor configuracion */
+.content-Settings{
+    position: absolute;
+    margin-top: -80px;
+    margin-left: -940px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4) /* Opacidad al 100% */
+    ;
+    padding: 4px;
+    border-radius: 10px;
+    color: #eff;
+}
+.icon-settings{
+    font-size: 40px;
+    cursor: pointer;
+}
+/* contenedor de opciones de configuracion */
+.opc-settings{
+    margin-top: 10px;
+    margin-left: 30px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+}
+.user-Settings{
+    font-size: 30px;
+    color: #c5bfbf;
+    cursor: pointer;
+}
+
+.form-update-veterinario{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: -110px 50px 50px 100px;
+    padding: 20px;
+    width: 300px;
+    background-color: rgba(111, 138, 67, .90);
+    border-radius: 10px;
+    border:2px solid #c5bfbf;
+}
+
+.form-update-veterinario > *:not(label) {
+    align-self: center;
+}
+.form-update-veterinario label{ 
+    margin: 15px 0 4px 20px;
+    color: #354126;
+    font-weight: bold;
+}
+
+.input-register{
+    border: none;
+    outline: none;
+    border-radius:20px;
+    padding: 6px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 210px;
+    height: 35px;
+    padding-left: 10px;
+    color: #fff;
+}
+
+.input-register::placeholder{
+    color: rgba(0, 0, 0, 0.3);
+}
+.btn-update{
+    border: 1px solid #fff;
+    margin: 24px 0 10px 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #3d4b29;
+    padding: 5px;
+    border-radius: 5px;
+    transition: .3s;
+}
+.btn-update:hover{
+    cursor: pointer;
+    background-color: #fff;
+    color: #3d4b29;
+    font-weight: bold;
+    font-size: 21px;
+    padding: 7px;
+}

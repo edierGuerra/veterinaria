@@ -2,11 +2,6 @@
 import { useAuth } from "./Context/AuthProvider"; // ✅ Importamos el contexto
 import homeveterinario from './Components/Apartado-Veterinario/HomeVeterinario'
 import axios from 'axios'; //Libreria que permite realizar solicitudees HTTP
-//Funcion del token
-function parseJwt (token){
-    const base64Url = token.split('.')[1];
-
-}
 // Funcion que realiza peticiones a la api
 export const sendDataRegister=async(correo,password1)=>{
     try{
@@ -33,7 +28,7 @@ export const sendDataRegister=async(correo,password1)=>{
 };
 export const sendDataLogin= async (userName, password,setIsAuthenticated,navigate)=>{
     try{
-        const response = await axios.post("http://127.0.0.1:8000/api/v1/veterinario/token",{
+        const response = await axios.post("http://localhost:3000/login",{
             username:userName,
             password:password
         },{
@@ -42,23 +37,37 @@ export const sendDataLogin= async (userName, password,setIsAuthenticated,navigat
             }
         });
         console.log(response)
-        if(response.data.message !== "Usuario no encontrado o contraseña invalida"){
+        if(response.data.message === "User validated successfully"){
             alert("Veterinario Existente")
             console.log((response))
             // Almacenar token en localStorage
             localStorage.setItem("token",response.data.access_token);
-
             //Mandar true ya que se encuentra logueado
             setIsAuthenticated(true);
-            //Obtener el nombre del veterinario
-            const nameVeterinario = response.data.user.username;
-            // de esta forma se estaria pasando a nameVeterinario como prop
-            navigate(`/homeveterinario?nameveterinario=${nameVeterinario}`);  // Usamos navigate para redirigir
+            console.log(response.data.userData)
+            localStorage.setItem("user", JSON.stringify(response.data.userData));  // Almacena como cadena JSON
+            navigate(`/homeveterinario`);  // Usamos navigate para redirigir
         }else{
             alert("Veterinario no encontrado ")
         } 
     }catch(error){
         console.log('error',error);
+    }
+};
+export const updateVeterinario = async(address,phone,ProfessionalCard)=>{
+    try{
+        const response = await axios.post("url",{
+            address: address,
+            phone:phone,
+            ProfessionalCard:ProfessionalCard
+        },{
+            headers:{
+                'Content-Type':'application/json'
+            }
+        });
+
+    }catch(error){
+        console.log('error',error)
     }
 };
 

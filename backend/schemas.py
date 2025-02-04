@@ -39,8 +39,8 @@ class VeterinarioResponse(VeterinarioBase):
         from_attributes = True
 # Login 
 class Login(BaseModel):
-    username: str = Field(max_length=10, min_length=5)
-    password: str = Field(max_length=15, min_length=10)
+    username: str 
+    password: str 
 ### 📌 ESQUEMA MASCOTA ###
 class MascotaBase(BaseModel):
     nombre: str = Field(..., min_length=1, max_length=50, description="Nombre de la mascota")
