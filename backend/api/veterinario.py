@@ -8,7 +8,7 @@ from crud import create_veterinarian, update_veterinarian
 router = APIRouter(prefix="/api/v1/veterinario",tags=["veterinario"])
 
 @router.post("/",response_model=VeterinarioResponse)
-def valide_veterinarian(form_data:Login, db:Session = Depends(get_db)):
+def login_veterinarian(form_data:Login, db:Session = Depends(get_db)):
     user = db.query(Veterinario).filter(Veterinario.username == form_data.username, Veterinario.password == form_data.password).first()
     if not user: 
         return {"message":"nombre de usuario o contraseña incorrectos"}
@@ -28,7 +28,7 @@ def create_veterinarians(form_data:VeterinarioCreate,db:Session = Depends(get_db
     )
     return veterinarian
 
-@router.post("/update", response_model=VeterinarioResponse)
+@router.put("/update", response_model=VeterinarioResponse)
 def update_veterinarians(form_data:VeterinarioUpdate,db:Session = Depends(get_db)): 
     veterinarian = update_veterinarian(
         db = db,
