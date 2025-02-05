@@ -52,6 +52,9 @@ nav {
 .logout:hover{
     color: red;
 }
+.home-veterinario:hover{
+    color: #ff9f65;
+}
 .avatar {
     width: 70px !important;
     height: 70px !important;

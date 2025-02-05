@@ -11,12 +11,12 @@ import Login from './Components/Login-Register/Login'
 // FUNCIONES PROTECCION DE RUTAS
 import { RequireAuth } from "./ProteccionRutas";
 //OPCIONES VETERINARIO
-import Mascota from './Components/Apartado-Veterinario/OpcionesVeterinario/Mascota'
 import HomeVeterinario from './Components/Apartado-Veterinario/HomeVeterinario'
+import RegistrarMascota from './Components/Apartado-Veterinario/OpcionesVeterinario/Registrar/RegistrarMascota'
+import RegistrarPropietario from './Components/Apartado-Veterinario/OpcionesVeterinario/Registrar/RegistrarPropietario'
 
 
 function App() {
-
   return (
     <>
     <Router>
@@ -24,11 +24,13 @@ function App() {
       <div>
         <Routes>
           <Route path='/' element={<Inicio/>}/>
-          <Route path='/homeveterinario' element={<RequireAuth><HomeVeterinario/></RequireAuth>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/mascota' element={<RequireAuth><Mascota/></RequireAuth>}/>
+          <Route path='/homeveterinario' element={<RequireAuth><HomeVeterinario/></RequireAuth>}/>
+          <Route path='/registrarmascota' element={<RequireAuth><RegistrarMascota/></RequireAuth>}/>
+          <Route path='/registrarpropietario' element={<RequireAuth><RegistrarPropietario/></RequireAuth>}/>
+
 
 
         </Routes>

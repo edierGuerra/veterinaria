@@ -1,9 +1,10 @@
 .DivOpciones{
     width: 300px;
-    margin: 250px auto;
+    margin:0  auto;
     display: flex;
     flex-direction: row;
     gap: 20px;
+    padding-top: 10%;
 }
 
 .Btn{

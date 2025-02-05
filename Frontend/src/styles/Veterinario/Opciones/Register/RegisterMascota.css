@@ -1,0 +1,28 @@
+.container-form-register-pet{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: antiquewhite;
+}
+.form-register-pet{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 330px;
+    padding: 30px ;
+    background-color: aqua;
+
+}
+
+.label-register-pet{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.btn-register-pet{
+    background-color: red;
+}
