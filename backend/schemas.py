@@ -32,12 +32,12 @@ class VeterinarioCreate(VeterinarioBase):
     password: str = Field(max_length=15, min_length=10)
 
 class VeterinarioUpdate(BaseModel):
-    id: int = Field(..., description="ID del veterinario")
-    nombres: Optional[str] = Field(None, min_length=1, max_length=100, description="Nombres del veterinario")
-    apellidos: Optional[str] = Field(None, min_length=1, max_length=100, description="Apellidos del veterinario")
-    direccion: Optional[str] = Field(None, max_length=150, description="Dirección del veterinario")
-    telefono: Optional[str] = Field(None, min_length=7, max_length=15, description="Teléfono del veterinario")
-    tarjeta_profesional: Optional[str] = Field(None, min_length=7, max_length=15, description="Tarjeta profesional del veterinario")
+    id: int 
+    nombres: Optional[str] 
+    apellidos: Optional[str] 
+    direccion: Optional[str] 
+    telefono: Optional[str] 
+    tarjeta_profesional: Optional[str] 
 
 class VeterinarioResponse(VeterinarioBase):
     id: int = Field(..., description="ID del veterinario")

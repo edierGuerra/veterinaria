@@ -217,7 +217,7 @@ details{
     font-weight: bold;
 }
 
-.input-register{
+.input-update{
     border: none;
     outline: none;
     border-radius:20px;
@@ -229,8 +229,13 @@ details{
     padding-left: 10px;
     color: #fff;
 }
+/* inputs predefinidos */
+.inputs-prohividos{
+    color: #394329;
+}
 
-.input-register::placeholder{
+
+.input-update::placeholder{
     color: rgba(0, 0, 0, 0.3);
 }
 .btn-update{

@@ -18,7 +18,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// ruta para la validacion de usuario con FastAPI
+// ruta para la validacion de veterinario con FastAPI
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
@@ -53,7 +53,7 @@ app.post('/login', async (req, res) => {
         const accessToken = generateAccessToken(tokenPayload)
         const refreshToken = generateRefreshToken(tokenPayload)
 
-        return res.json({
+        return res.status(200).json({
             message: "User validated successfully",
             token: accessToken,
             refreshtoken: refreshToken,
@@ -73,7 +73,7 @@ app.post('/login', async (req, res) => {
 // falta asignar un id a la respuesta de fastapi
 //ruta para solicitar datos del veterinario que se van a actualizar y enviarlos a fastapi
 app.put("/actualizarVeterinario", async (req, res) => {
-    const { names, lastNames, address, phone, ProfessionalCard } = req.body;
+    const {id, names, lastNames, address, phone, professionalCard } = req.body;
 
     // if (!id || !names || !lastNames || !address || !phone || !professionalCard) {
     //     return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el veterinario' });
@@ -81,12 +81,13 @@ app.put("/actualizarVeterinario", async (req, res) => {
 
     try {
         // envio los datos de las credenciales a Fastapi
-        const fastApiResponse = await axios.put(`${process.env.FASTAPI_BASE_URL}/api/v1/actualizar/veterinario/`, {
-            names: names,
-            lastNames: lastNames,
-            address: address,
-            phone: phone,
-            professionalCard: ProfessionalCard
+        const fastApiResponse = await axios.put(`${process.env.FASTAPI_BASE_URL}/api/v1/veterinario/update`, {
+            id:id,
+            nombres: names,
+            apellidos: lastNames,
+            direccion: address,
+            telefono: phone,
+            tarjeta_profesional: professionalCard
         },{
             headers:{
                 'Content-Type':'application/json'
@@ -97,7 +98,7 @@ app.put("/actualizarVeterinario", async (req, res) => {
         // si FastAPI valida, crear el token con los datos adicionales
         const userData = fastApiResponse.data // datos de la respuesta de FastAPI
 
-        return res.json({
+        return res.status(200).json({
             message: "updated vet details",
             userData: userData
         });

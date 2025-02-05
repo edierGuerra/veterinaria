@@ -3,6 +3,9 @@ import { GoHome } from "react-icons/go";
 import { GrContactInfo } from "react-icons/gr";
 import { AiOutlineLogin } from "react-icons/ai";
 import { AiOutlineLogout } from "react-icons/ai";
+import { SiFurrynetwork } from "react-icons/si";
+import { CgProfile } from "react-icons/cg";
+
 //Importar esto para agregar avatares al navbar
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -35,8 +38,17 @@ function Navbar() {
                 <span title='Home'>
                     {<GoHome  className='opc home'/>}
                 </span>
-            
             </Link>
+
+                
+            {isAuthenticated &&(
+                <Link to={'/homeveterinario'}>
+                    <span title='Home Veterinario'>
+                        {<CgProfile className='opc home-veterinario' />}
+                    </span>
+                </Link>
+            )}
+            
             <Link to={"/about"} >
                 <span title='About'>
                     <GrContactInfo className='opc about'/>
@@ -56,6 +68,7 @@ function Navbar() {
                     </span>
                 </Link>
             )}
+            
         </div>
     </nav>
         

@@ -37,7 +37,7 @@ export const sendDataLogin= async (userName, password,setIsAuthenticated,navigat
             }
         });
         console.log(response)
-        if(response.data.message === "User validated successfully"){
+        if(response.status ===200){
             alert("Veterinario Existente")
             console.log((response))
             // Almacenar token en localStorage
@@ -45,7 +45,7 @@ export const sendDataLogin= async (userName, password,setIsAuthenticated,navigat
             //Mandar true ya que se encuentra logueado
             setIsAuthenticated(true);
             console.log(response.data.userData)
-            localStorage.setItem("user", JSON.stringify(response.data.userData));  // Almacena como cadena JSON
+            localStorage.setItem("userVeterinario", JSON.stringify(response.data.userData));  // Almacena como cadena JSON
             navigate(`/homeveterinario`);  // Usamos navigate para redirigir
         }else{
             alert("Veterinario no encontrado ")
@@ -54,20 +54,47 @@ export const sendDataLogin= async (userName, password,setIsAuthenticated,navigat
         console.log('error',error);
     }
 };
-export const updateVeterinario = async(address,phone,ProfessionalCard)=>{
+export const updateVeterinario = async(idVeterinario,names,lastNames,address,phone,professionalCard)=>{
     try{
-        const response = await axios.post("url",{
+        const response = await axios.put("http://localhost:3000/actualizarVeterinario",{
+            id:idVeterinario,
+            names:names,
+            lastNames:lastNames,
             address: address,
             phone:phone,
-            ProfessionalCard:ProfessionalCard
+            professionalCard:professionalCard
         },{
             headers:{
                 'Content-Type':'application/json'
             }
         });
+        if(response.status ===200){
+            alert("Datos actualizados Exitosamente");
+            localStorage.setItem("userVeterinario", JSON.stringify(response.data.userData));
+        }
+        else{
+            alert("ups, Ocurrio un error, Vuelve a intentarlo mas tarde");
+        }
 
     }catch(error){
         console.log('error',error)
     }
 };
 
+export const sendDataMascota = async (idMascota,nameMascota,colorMascota,razaMascota,idVeterinario)=>{
+    try{
+        const responde = await axios.post("url",{
+            idMascota:idMascota,
+            nameMascota:nameMascota,
+            colorMascota:colorMascota,
+            razaMascota:razaMascota,
+            idVeterinario:idVeterinario
+        },{
+            headers:{
+                'Content-Type':'application/json'
+            }
+        });
+    }catch(error){
+        console.log('error',error)
+    }
+};
