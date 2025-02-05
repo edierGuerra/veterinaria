@@ -37,6 +37,7 @@ class VeterinarioUpdate(BaseModel):
     apellidos: Optional[str] = Field(None, min_length=1, max_length=100, description="Apellidos del veterinario")
     direccion: Optional[str] = Field(None, max_length=150, description="Dirección del veterinario")
     telefono: Optional[str] = Field(None, min_length=7, max_length=15, description="Teléfono del veterinario")
+    tarjeta_profesional: Optional[str] = Field(None, min_length=7, max_length=15, description="Tarjeta profesional del veterinario")
 
 class VeterinarioResponse(VeterinarioBase):
     id: int = Field(..., description="ID del veterinario")

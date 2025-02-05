@@ -13,7 +13,7 @@ def create_veterinarian(db:Session,username:str, password:str, names:str, last_n
 """ def read_veterinarian(id_veterinarian:int):
     pass """
 
-def update_veterinarian(db:Session,id_veterinarian:int, new_names:str = None, new_last_names:str = None, new_address:str = None, new_phone:str = None):
+def update_veterinarian(db:Session,id_veterinarian:int, new_names:str = None, new_last_names:str = None, new_address:str = None, new_phone:str = None, profesional_target:str = None):
     veterinarian = db.query(Veterinario).filter(Veterinario.id == id_veterinarian).first()
     if new_names:
         veterinarian.nombres = new_names
@@ -23,6 +23,8 @@ def update_veterinarian(db:Session,id_veterinarian:int, new_names:str = None, ne
         veterinarian.direccion = new_address
     if new_phone: 
         veterinarian.telefono = new_phone
+    if profesional_target: 
+        veterinarian.tarjeta_profesional = profesional_target
 
     db.commit()
     db.refresh(veterinarian)
