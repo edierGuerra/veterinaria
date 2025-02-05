@@ -36,6 +36,7 @@ def update_veterinarians(form_data:VeterinarioUpdate,db:Session = Depends(get_db
         new_names=form_data.nombres,
         new_last_names=form_data.apellidos,
         new_phone=form_data.telefono,
-        new_address=form_data.direccion
+        new_address=form_data.direccion,
+        profesional_target=form_data.tarjeta_profesional
     )
     return veterinarian
