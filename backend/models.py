@@ -10,6 +10,7 @@ class Dueno(Base):
     __tablename__ = "duenos"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    numero_documento: Mapped[str] = mapped_column(String(10), nullable=True)
     nombres: Mapped[str] = mapped_column(String(100), nullable=False)
     apellidos: Mapped[str] = mapped_column(String(100), nullable=False)
     direccion: Mapped[str] = mapped_column(String(150), nullable=True)
@@ -17,7 +18,7 @@ class Dueno(Base):
     correo_electronico: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
 
     # Relación con Mascotas (1 dueño puede tener muchas mascotas)
-    mascotas = relationship("Mascota", back_populates="dueno")
+    mascotas:Mapped[List["Mascota"]] = relationship(back_populates="dueno", cascade="all, delete-orphan")
 
 ### 📌 MODELO VETERINARIO ###
 class Veterinario(Base):
@@ -25,7 +26,7 @@ class Veterinario(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True, nullable=False)
     username:Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
-    password:Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
+    password:Mapped[str] = mapped_column(String(250), nullable=False)
     nombres: Mapped[str] = mapped_column(String(100), nullable=False)
     apellidos: Mapped[str] = mapped_column(String(100), nullable=False)
     direccion: Mapped[str] = mapped_column(String(150), nullable=True)
@@ -33,10 +34,10 @@ class Veterinario(Base):
     tarjeta_profesional: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)  # Identificación única
 
     # Relación con Mascotas (1 veterinario atiende muchas mascotas)
-    mascotas = relationship("Mascota", back_populates="veterinario")
+    mascotas:Mapped[List["Mascota"]] = relationship(back_populates="veterinario")
 
     # Relación con Visitas (1 veterinario registra muchas visitas)
-    visitas = relationship("Visita", back_populates="veterinario")
+    visitas:Mapped[List["Visita"]] = relationship(back_populates="veterinario")
 
     def registrar_visita(self, mascota_id, temperatura, peso, frecuencia_respiratoria, frecuencia_cardiaca, estado_animo, recomendaciones):
         """ Método para registrar una visita """
@@ -70,7 +71,7 @@ class Mascota(Base):
     # Relaciones
     dueno = relationship("Dueno", back_populates="mascotas")  # Relación con Dueño
     veterinario = relationship("Veterinario", back_populates="mascotas")  # Relación con Veterinario
-    visitas:Mapped[List["Visita"]] = relationship(back_populates="mascota")  # Relación con Visitas
+    visitas:Mapped[List["Visita"]] = relationship(back_populates="mascota", cascade="all, delete-orphan")  # Relación con Visitas
 
 ### 📌 MODELO VISITA ###
 class Visita(Base):
