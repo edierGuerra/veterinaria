@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database import create_db, SessionLocal
-from models import Veterinario
+from database import create_db
 from api.veterinario import router as veterinario_router
+from api.propietario import router as dueño_router
 
 app = FastAPI()
 
@@ -30,3 +30,4 @@ if __name__ == "__main__":
     create_db()
 
 app.include_router(veterinario_router)
+app.include_router(dueño_router)
