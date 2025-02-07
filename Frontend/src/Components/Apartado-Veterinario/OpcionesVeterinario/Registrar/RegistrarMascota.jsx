@@ -1,48 +1,72 @@
 import {useEffect,useState} from 'react';
 import '../../../../styles/Veterinario/Opciones/Register/RegisterMascota.css'
 import {sendDataMascota} from '../../../../apis';
-
+import { MdDriveFileRenameOutline } from "react-icons/md";
+import { IoIosColorPalette } from "react-icons/io";
+import { MdOutlinePets } from "react-icons/md";
+import { FaUserDoctor } from "react-icons/fa6";
+import { BsPersonHeart } from "react-icons/bs";
 function RegistrarMascota() {
     const userVeterinario = JSON.parse(localStorage.getItem("userVeterinario")); //obteniendo informacion del veterinario
-    const [idMascota, setIdMascota]=useState("");
     const [nameMascota, setNameMascota]=useState("");
     const [colorMascota, setColorMascota]=useState("");
     const [razaMascota, setRazaMascota]=useState("");
+    const [idPropietario, setIdPropietario]=useState("");
     const [idVeterinario, setIdVeterinario]=useState(userVeterinario.id);
     const handleSubmit =(e)=>{
         e.preventDefault();
-        console.log(idMascota)
+        //Control de excepciones
         console.log(nameMascota)
         console.log(colorMascota)
         console.log(razaMascota)
+        console.log(idPropietario)
         console.log(idVeterinario)
-        sendDataMascota(idMascota,nameMascota,colorMascota,razaMascota,idVeterinario);
+        sendDataMascota(nameMascota,colorMascota,razaMascota,idPropietario,idVeterinario);
+        //EN caso tal de que el id del propietario no exista, mostraremos el siguiente aviso ---> "Al parecer ese propietario no existe, deseas registrar un propietario si no"
+        //En caso de que diga que si, redirgir a register propietario
+        //EN caso de que diga que no quedarse en register mascota hasta que ingrese un id de propietario correcto
     }
     return (
         <div className="container-form-register-pet">
             <form className='form-register-pet' onSubmit={handleSubmit}>
                 <h2>Registrar Mascotas</h2>
-                <label className="label-register-pet" htmlFor="id">Id</label>
-                <input type="text" id="id" required onChange={(e)=>{
-                    setIdMascota(e.target.value);
+                <div className="div-input-label-group">
+                    <label className="label-register-pet" htmlFor="name">{<MdDriveFileRenameOutline />}</label>
+                    <input className='input-register-pet' 
+                    placeholder='Nombre' type="text" id="name" required onChange={(e)=>{
+                        setNameMascota(e.target.value);
+                    }}/>
 
-                }}/>
-                <label className="label-register-pet" htmlFor="name">Name</label>
-                <input className='input-register-pet' type="text" id="name" required onChange={(e)=>{
-                    setNameMascota(e.target.value);
-                }}/>
-                <label className="label-register-pet" htmlFor="color">Color</label> 
-                <input className='input-register-pet' type="text" id="color" required onChange={(e)=>{
-                    setColorMascota(e.target.value);
-                }}/>
-                <label className="label-register-pet" htmlFor="raza">Raza</label>
-                <input className='input-register-pet' type="text" id="raza" required  onChange={(e)=>{
-                    setRazaMascota(e.target.value);
-                }}/>
-                <label className="label-register-pet" htmlFor="idveterinario">Veterinario</label>
-                <input className='input-register-pet' type="text" id="idveterinario" readOnly value={userVeterinario.id} onChange={(e)=>{
-                    setIdVeterinario(e.target.value);
-                }}/>
+                </div>
+                <div className="div-input-label-group">
+                    <label className="label-register-pet" htmlFor="color">{<IoIosColorPalette />}</label> 
+                    <input className='input-register-pet' 
+                    placeholder='Color' type="text" id="color" required onChange={(e)=>{
+                        setColorMascota(e.target.value);
+                    }}/>
+                </div>
+                <div className="div-input-label-group">
+                    <label className="label-register-pet" 
+                    htmlFor="raza">{<MdOutlinePets />}</label>
+                    <input className='input-register-pet' 
+                    placeholder='Raza' type="text" id="raza" required  onChange={(e)=>{
+                        setRazaMascota(e.target.value);
+                    }}/>
+                </div>
+                <div className="div-input-label-group">
+                    <label className="label-register-pet" 
+                    htmlFor="idpropietario">{<BsPersonHeart />}</label>
+                    <input className='input-register-pet' 
+                    placeholder='Id Propietario' type="text" id="idpropietario" pattern='[0-9]+' title='Por favor ingresar numeros.' required  onChange={(e)=>{
+                        setIdPropietario(e.target.value);
+                    }}/>
+                </div>
+                <div className="div-input-label-group">
+                    <label className="label-register-pet" htmlFor="idveterinario">{<FaUserDoctor />}</label>
+                    <input className='input-register-pet' type="text" id="idveterinario" readOnly value={userVeterinario.id} onChange={(e)=>{
+                        setIdVeterinario(e.target.value);
+                    }}/>
+                </div>
                 <button className="btn-register-pet">Register</button>
 
             </form>

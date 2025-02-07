@@ -75,12 +75,10 @@ export const updateVeterinario = async(idVeterinario,names,lastNames,address,pho
         else{
             alert("ups, Ocurrio un error, Vuelve a intentarlo mas tarde");
         }
-
     }catch(error){
         console.log('error',error)
     }
 };
-
 export const sendDataMascota = async (idMascota,nameMascota,colorMascota,razaMascota,idVeterinario)=>{
     try{
         const responde = await axios.post("url",{
@@ -94,7 +92,37 @@ export const sendDataMascota = async (idMascota,nameMascota,colorMascota,razaMas
                 'Content-Type':'application/json'
             }
         });
+        if(responde.status=== 200){
+            alert("Mascota creada exitosamente")
+        }else{
+            alert("Ups. Ha ocurrido un error inesperado")
+        };
     }catch(error){
         console.log('error',error)
+    }
+};
+
+export const sendDataPropietario = async(idPropietario, nombresPropietario, direccionPropietario, telefonoPropietario, correoPropietario
+)=>{
+    try{
+        const response = await axios.post("url",{
+            idPropietario:idPropietario, 
+            nombresPropietario:nombresPropietario, 
+            direccionPropietario:direccionPropietario, 
+            telefonoPropietario:telefonoPropietario, 
+            correoPropietario:correoPropietario
+        },{
+            headers:{
+                'Content-Type':'application/json'
+            }
+        });
+        if(response.status === 200){
+            alert("Propietario Creado Exitosamente")
+        }else{
+            alert("Ups! ha ocurrido un error")
+        }
+    }catch(error){
+        console.log('error',error)
+
     }
 };

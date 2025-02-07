@@ -9,7 +9,7 @@ const app = express()
 const FASTAPI_BASE_URL = process.env.FASTAPI_BASE_URL;
 
 // Middleware para habilitar CORS
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
 // Middleware para logging
