@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import create_db
 from api.veterinario import router as veterinario_router
 from api.propietario import router as dueño_router
+from api.mascota import router as mascota_router
 
 app = FastAPI()
 
@@ -31,3 +32,4 @@ if __name__ == "__main__":
 
 app.include_router(veterinario_router)
 app.include_router(dueño_router)
+app.include_router(mascota_router)
