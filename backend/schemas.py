@@ -4,6 +4,7 @@ from typing import List, Optional
 
 ### 📌 ESQUEMA DUEÑO ###
 class DuenoBase(BaseModel):
+    numero_documento:str
     nombres: str = Field(..., min_length=1, max_length=100, description="Nombres del dueño")
     apellidos: str = Field(..., min_length=1, max_length=100, description="Apellidos del dueño")
     direccion: Optional[str] = Field(None, max_length=150, description="Dirección del dueño")

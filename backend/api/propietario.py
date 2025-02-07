@@ -10,6 +10,7 @@ router = APIRouter(prefix = "/api/v1/propietario", tags = ["propietario"])
 def registrar_propietario(form_data:DuenoCreate, db:Session = Depends(get_db)):
     dueño = create_owner(
         db,
+        document_number=form_data.numero_documento,
         names=form_data.nombres,
         last_names=form_data.apellidos,
         address=form_data.direccion,
