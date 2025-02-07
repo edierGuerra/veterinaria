@@ -81,7 +81,7 @@ class VisitaBase(BaseModel):
 class VisitaCreate(VisitaBase):
     mascota_id: int = Field(..., description="ID de la mascota")
     id_profesional: int = Field(..., description="ID del veterinario")
-    historial_clinico_id: int = Field(..., description="ID del historial clínico")
+    #historial_clinico_id: int = Field(..., description="ID del historial clínico")
 
 class VisitaResponse(VisitaBase):
     id: int = Field(..., description="ID de la visita")
