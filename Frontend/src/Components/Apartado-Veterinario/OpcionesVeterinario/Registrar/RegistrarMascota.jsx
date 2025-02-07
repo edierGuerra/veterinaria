@@ -10,6 +10,7 @@ function RegistrarMascota() {
     const userVeterinario = JSON.parse(localStorage.getItem("userVeterinario")); //obteniendo informacion del veterinario
     const [nameMascota, setNameMascota]=useState("");
     const [colorMascota, setColorMascota]=useState("");
+    const [especieMascota, setEspecieMascota]=useState("");
     const [razaMascota, setRazaMascota]=useState("");
     const [idPropietario, setIdPropietario]=useState("");
     const [idVeterinario, setIdVeterinario]=useState(userVeterinario.id);
@@ -21,7 +22,7 @@ function RegistrarMascota() {
         console.log(razaMascota)
         console.log(idPropietario)
         console.log(idVeterinario)
-        sendDataMascota(nameMascota,colorMascota,razaMascota,idPropietario,idVeterinario);
+        sendDataMascota(nameMascota,colorMascota,especieMascota,razaMascota,idPropietario,idVeterinario);
         //EN caso tal de que el id del propietario no exista, mostraremos el siguiente aviso ---> "Al parecer ese propietario no existe, deseas registrar un propietario si no"
         //En caso de que diga que si, redirgir a register propietario
         //EN caso de que diga que no quedarse en register mascota hasta que ingrese un id de propietario correcto
@@ -51,6 +52,14 @@ function RegistrarMascota() {
                     <input className='input-register-pet' 
                     placeholder='Raza' type="text" id="raza" required  onChange={(e)=>{
                         setRazaMascota(e.target.value);
+                    }}/>
+                </div>
+                <div className="div-input-label-group">
+                    <label className="label-register-pet" 
+                    htmlFor="especie">{<MdOutlinePets />}</label>
+                    <input className='input-register-pet' 
+                    placeholder='Especie' type="text" id="especie" required  onChange={(e)=>{
+                        setEspecieMascota(e.target.value);
                     }}/>
                 </div>
                 <div className="div-input-label-group">

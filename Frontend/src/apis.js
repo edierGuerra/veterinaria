@@ -81,7 +81,7 @@ export const updateVeterinario = async(idVeterinario,names,lastNames,address,pho
 };
 export const sendDataMascota = async (idMascota,nameMascota,colorMascota,razaMascota,idVeterinario)=>{
     try{
-        const responde = await axios.post("url",{
+        const responde = await axios.post("http://localhost:3000/RegistrarMascota",{
             idMascota:idMascota,
             nameMascota:nameMascota,
             colorMascota:colorMascota,
@@ -92,7 +92,7 @@ export const sendDataMascota = async (idMascota,nameMascota,colorMascota,razaMas
                 'Content-Type':'application/json'
             }
         });
-        if(responde.status=== 200){
+        if(responde.status=== 201){
             alert("Mascota creada exitosamente")
         }else{
             alert("Ups. Ha ocurrido un error inesperado")
@@ -104,8 +104,9 @@ export const sendDataMascota = async (idMascota,nameMascota,colorMascota,razaMas
 
 export const sendDataPropietario = async(idPropietario, nombresPropietario, direccionPropietario, telefonoPropietario, correoPropietario
 )=>{
+    
     try{
-        const response = await axios.post("url",{
+        const response = await axios.post("http://localhost:3000/RegistrarPropietario",{
             idPropietario:idPropietario, 
             nombresPropietario:nombresPropietario, 
             direccionPropietario:direccionPropietario, 
@@ -116,7 +117,7 @@ export const sendDataPropietario = async(idPropietario, nombresPropietario, dire
                 'Content-Type':'application/json'
             }
         });
-        if(response.status === 200){
+        if(response.status === 201){
             alert("Propietario Creado Exitosamente")
         }else{
             alert("Ups! ha ocurrido un error")
