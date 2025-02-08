@@ -1,9 +1,13 @@
 import {useState,useEffect} from 'react';
 import '../../../../styles/Veterinario/Opciones/Register/RegisterPropietario.css'
 import {sendDataPropietario} from '../../../../apis';
+import { useNavigate } from "react-router-dom";  // Importa useNavigat
 function RegistrarPropietario() {
+    const navigate = useNavigate();  // Usamos el hook para obtener la función de navegación
+
     const [idPropietario, setIdPropietario]=useState("");
     const [nombresPropietario, setNombresPropietario]=useState("");
+    const [apellidosPropietario, setApellidosPropietario]=useState("");
     const [direccionPropietario,setDireccionPropietario]=useState("");
     const [telefonoPropietario,setTelefonoPropietario]=useState("");
     const [correoPropietario,setCorreoPropietario]=useState("");
@@ -11,10 +15,11 @@ function RegistrarPropietario() {
         e.preventDefault();
         console.log(idPropietario)
         console.log(nombresPropietario)
+        console.log(apellidosPropietario)
         console.log(direccionPropietario)
         console.log(telefonoPropietario)
         console.log(correoPropietario)
-        sendDataPropietario(idPropietario, nombresPropietario, direccionPropietario, telefonoPropietario, correoPropietario);
+        sendDataPropietario(idPropietario, nombresPropietario,apellidosPropietario, direccionPropietario, telefonoPropietario, correoPropietario,navigate);
         //llamar la api para enviar datos del propietario
          //si el registro es exitoso, debemos redirigirlo al register de mascota, con el id del propietario puesto por defecto
     }
@@ -37,6 +42,14 @@ function RegistrarPropietario() {
                 <input className='input-register-owner' 
                     placeholder='Nombres' type="text" id="names" required onChange={(e)=>{
                     setNombresPropietario(e.target.value);
+                }}/>
+
+            </div>
+            <div className="div-input-label-group">
+                <label className="label-register-owner" htmlFor="lastNames"></label>
+                <input className='input-register-owner' 
+                    placeholder='Apellidos' type="text" id="lastNames" required onChange={(e)=>{
+                    setApellidosPropietario(e.target.value);
                 }}/>
 
             </div>

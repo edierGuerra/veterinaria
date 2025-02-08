@@ -6,7 +6,10 @@ import { IoIosColorPalette } from "react-icons/io";
 import { MdOutlinePets } from "react-icons/md";
 import { FaUserDoctor } from "react-icons/fa6";
 import { BsPersonHeart } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";  // Importa useNavigat
+
 function RegistrarMascota() {
+    const navigate = useNavigate();  // Usamos el hook para obtener la función de navegación
     const userVeterinario = JSON.parse(localStorage.getItem("userVeterinario")); //obteniendo informacion del veterinario
     const [nameMascota, setNameMascota]=useState("");
     const [colorMascota, setColorMascota]=useState("");
@@ -22,7 +25,7 @@ function RegistrarMascota() {
         console.log(razaMascota)
         console.log(idPropietario)
         console.log(idVeterinario)
-        sendDataMascota(nameMascota,colorMascota,especieMascota,razaMascota,idPropietario,idVeterinario);
+        sendDataMascota(nameMascota,colorMascota,especieMascota,razaMascota,idPropietario,idVeterinario,navigate);
         //EN caso tal de que el id del propietario no exista, mostraremos el siguiente aviso ---> "Al parecer ese propietario no existe, deseas registrar un propietario si no"
         //En caso de que diga que si, redirgir a register propietario
         //EN caso de que diga que no quedarse en register mascota hasta que ingrese un id de propietario correcto
@@ -40,10 +43,11 @@ function RegistrarMascota() {
 
                 </div>
                 <div className="div-input-label-group">
-                    <label className="label-register-pet" htmlFor="color">{<IoIosColorPalette />}</label> 
+                    <label className="label-register-pet" 
+                    htmlFor="especie">{<MdOutlinePets />}</label>
                     <input className='input-register-pet' 
-                    placeholder='Color' type="text" id="color" required onChange={(e)=>{
-                        setColorMascota(e.target.value);
+                    placeholder='Especie' type="text" id="especie" required  onChange={(e)=>{
+                        setEspecieMascota(e.target.value);
                     }}/>
                 </div>
                 <div className="div-input-label-group">
@@ -55,11 +59,10 @@ function RegistrarMascota() {
                     }}/>
                 </div>
                 <div className="div-input-label-group">
-                    <label className="label-register-pet" 
-                    htmlFor="especie">{<MdOutlinePets />}</label>
+                    <label className="label-register-pet" htmlFor="color">{<IoIosColorPalette />}</label> 
                     <input className='input-register-pet' 
-                    placeholder='Especie' type="text" id="especie" required  onChange={(e)=>{
-                        setEspecieMascota(e.target.value);
+                    placeholder='Color' type="text" id="color" required onChange={(e)=>{
+                        setColorMascota(e.target.value);
                     }}/>
                 </div>
                 <div className="div-input-label-group">
