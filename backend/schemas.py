@@ -15,7 +15,6 @@ class DuenoCreate(DuenoBase):
     pass  # Usa los mismos atributos para crear un dueño
 
 class DuenoResponse(DuenoBase):
-    id: int = Field(..., description="ID del dueño")
 
     class Config:
         from_attributes = True
