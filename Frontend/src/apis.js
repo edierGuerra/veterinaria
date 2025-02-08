@@ -87,7 +87,7 @@ export const sendDataMascota = async (nameMascota,colorMascota,especieMascota,ra
             colorMascota:colorMascota,
             especieMascota:especieMascota,
             razaMascota:razaMascota,
-            idPropietario:Number(idPropietario),
+            idPropietario:idPropietario,
             idVeterinario:idVeterinario
         },{
             headers:{
