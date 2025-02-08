@@ -68,8 +68,8 @@ def delete_pet(db:Session, id_pet:int):
     return {"message":"Mascota eliminada satisfactoriamente"}
 
 # CRUD propietarios
-def create_owner(db:Session, names:str, last_names:str, address:str, phone:str, email:str, document_number:str):
-    owner = Dueno(nombres = names, apellidos = last_names, numero_documento = document_number,  direccion = address, telefono = phone, correo_electronico = email)
+def create_owner(db:Session,n_documento:int, names:str, last_names:str, address:str, phone:str, email:str):
+    owner = Dueno(id = n_documento, nombres = names, apellidos = last_names, direccion = address, telefono = phone, correo_electronico = email)
     
     db.add(owner)
     db.commit()

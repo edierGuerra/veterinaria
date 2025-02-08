@@ -8,9 +8,7 @@ Base = declarative_base()
 ### 📌 MODELO DUEÑO ###
 class Dueno(Base):
     __tablename__ = "duenos"
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    numero_documento: Mapped[str] = mapped_column(String(10), nullable=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False)
     nombres: Mapped[str] = mapped_column(String(100), nullable=False)
     apellidos: Mapped[str] = mapped_column(String(100), nullable=False)
     direccion: Mapped[str] = mapped_column(String(150), nullable=True)
