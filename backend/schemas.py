@@ -4,12 +4,12 @@ from typing import List, Optional
 
 ### 📌 ESQUEMA DUEÑO ###
 class DuenoBase(BaseModel):
-    id:int = Field(..., description="numero de documento del propietario")
-    nombres: str = Field(..., min_length=1, max_length=100, description="Nombres del dueño")
-    apellidos: str = Field(..., min_length=1, max_length=100, description="Apellidos del dueño")
-    direccion: Optional[str] = Field(None, max_length=150, description="Dirección del dueño")
-    telefono: Optional[str] = Field(None, min_length=7, max_length=15, description="Teléfono del dueño")
-    correo_electronico: EmailStr = Field(..., description="Correo electrónico válido")
+    id:int #= Field(..., description="numero de documento del propietario")
+    nombres: str #= Field(..., min_length=1, max_length=100, description="Nombres del dueño")
+    apellidos: str #= Field(..., min_length=1, max_length=100, description="Apellidos del dueño")
+    direccion: Optional[str] #= Field(None, max_length=150, description="Dirección del dueño")
+    telefono: Optional[str] #= Field(None, min_length=7, max_length=15, description="Teléfono del dueño")
+    correo_electronico: EmailStr #= Field(..., description="Correo electrónico válido")
 
 class DuenoCreate(DuenoBase):
     pass  # Usa los mismos atributos para crear un dueño

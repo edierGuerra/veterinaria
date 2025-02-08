@@ -166,7 +166,7 @@ app.post("/RegistrarPropietario", async (req, res) => {
     try {
         // envio los datos de las credenciales a Fastapi
         const fastApiResponse = await axios.post(`${process.env.FASTAPI_BASE_URL}/api/v1/propietario/register`, {
-            numero_documento:idPropietario,
+            id:idPropietario,
             nombres:nombresPropietario,
             apellidos:apellidosPropietario,
             direccion:direccionPropietario,
