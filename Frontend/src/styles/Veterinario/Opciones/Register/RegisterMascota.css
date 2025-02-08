@@ -2,27 +2,92 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     margin: 0;
-    background-color: antiquewhite;
+    background-image: url("../../../../assets/RegisterPet/FondoRegister_pet.jpg" );
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 80px;
 }
 .form-register-pet{
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 330px;
-    padding: 30px ;
-    background-color: aqua;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 60px 80px;
+    background-color: rgba(94, 65, 47, .4);
+    background-position: center center;
+    backdrop-filter: blur(2px);
+    border-radius: 15px;
 
 }
-
-.label-register-pet{
-    color: white;
-    font-size: 20px;
+.form-register-pet h2{
+    color: #dfd0a8;
+    padding-bottom: 20px;
+    font-size: 30px;
     font-weight: bold;
-    margin-top: 10px;
 }
+.div-input-label-group{
+    display: flex;
+    align-content: center;
+    margin-top: 7px;
+
+}
+.label-register-pet{
+    position: absolute;
+    color: #fff;
+    font-size: 28px;
+    margin-top: 5px;
+    margin-left: 10px;
+
+}
+
+.input-register-pet{
+    border: none;
+    border-bottom: 2px solid rgba(220, 207, 172, .5)
+    ;
+    background-color: transparent;
+    padding: 10px;
+    width: 300px;
+    border-radius: 15px;
+    text-align: center;
+    color: #dccfac;
+    font-size: 17px;
+
+}
+
+.input-register-pet:focus{
+    outline: none;
+    border-bottom: 2px solid #fff;
+}
+.input-register-pet::placeholder{
+    padding-left: 20px;
+    letter-spacing: 1.5px;
+    color: #fff;
+
+}
+/* .input-register-pet:hover{
+    border: none;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    border-radius: 15px;
+    
+} */
 .btn-register-pet{
-    background-color: red;
+    border: none;
+    background-color: #dccfac;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 15px 25px;
+    border-radius: 15px;
+    margin-top: 25px;
+    transition: .5s;
+
+}
+.btn-register-pet:hover{
+    cursor: pointer;
+    background-color:#a8834a ;
+    color: #fff;
+    font-weight: bold;
 }

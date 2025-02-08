@@ -8,7 +8,7 @@ footer{
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
-    background-color: #e8362c;
+    background-color: #501c08;
     padding: 13px;
     gap: 20px;
 }

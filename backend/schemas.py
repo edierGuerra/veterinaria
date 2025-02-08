@@ -15,7 +15,7 @@ class DuenoCreate(DuenoBase):
     pass  # Usa los mismos atributos para crear un dueño
 
 class DuenoResponse(DuenoBase):
-    pass
+    id: int = Field(..., description="ID del dueño")
 
     class Config:
         from_attributes = True
@@ -41,8 +41,8 @@ class VeterinarioUpdate(BaseModel):
     tarjeta_profesional: Optional[str] 
 
 class VeterinarioResponse(VeterinarioBase):
-    id: int = Field(..., description="ID del veterinario")
-    username: str = Field(max_length=10, min_length=5)
+    id: int #= Field(..., description="ID del veterinario")
+    username: str #= Field(max_length=10, min_length=5)
 
     class Config:
         from_attributes = True
@@ -52,19 +52,19 @@ class Login(BaseModel):
     password: str 
 ### 📌 ESQUEMA MASCOTA ###
 class MascotaBase(BaseModel):
-    nombre: str = Field(..., min_length=1, max_length=50, description="Nombre de la mascota")
-    color: Optional[str] = Field(None, max_length=30, description="Color de la mascota")
-    especie: str = Field(..., min_length=1, max_length=50, description="Especie de la mascota")
-    raza: Optional[str] = Field(None, max_length=50, description="Raza de la mascota")
+    nombre: str #= Field(..., min_length=1, max_length=50, description="Nombre de la mascota")
+    color: Optional[str] #= Field(None, max_length=30, description="Color de la mascota")
+    especie: str #= Field(..., min_length=1, max_length=50, description="Especie de la mascota")
+    raza: Optional[str] #= Field(None, max_length=50, description="Raza de la mascota")
 
 class MascotaCreate(MascotaBase):
-    id_dueno: int = Field(..., description="ID del dueño")
-    id_veterinario: Optional[int] = Field(None, description="ID del veterinario (opcional)")
+    id_dueno: int #= Field(..., description="ID del dueño")
+    id_veterinario: Optional[int] #= Field(None, description="ID del veterinario (opcional)")
 
 class MascotaResponse(MascotaBase):
-    id: int = Field(..., description="ID de la mascota")
-    id_dueno: int = Field(..., description="ID del dueño")
-    id_veterinario: Optional[int] = Field(None, description="ID del veterinario (opcional)")
+    id: int #= Field(..., description="ID de la mascota")
+    id_dueno: int #= Field(..., description="ID del dueño")
+    id_veterinario: Optional[int] #= Field(None, description="ID del veterinario (opcional)")
 
     class Config:
         from_attributes = True

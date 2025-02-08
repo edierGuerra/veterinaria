@@ -15,7 +15,7 @@ import {useAuth} from '../Context/AuthProvider'// Importar useAuth para verifica
 import catAvatar from '../assets/Avatars/cat.jpg'
 import chiguaguaAvatar from '../assets/Avatars/dog_chiguagua.jpg'
 import dogVetAvatar from '../assets/Avatars/dog_Vet.jpg'
-import logoCentral from '../assets/logo_central_nav.png'
+import logoCentral from '../assets/Navbar/logo_central_nav.png'
 import {Link, Navigate} from 'react-router-dom' //Esto sirve para agregar los apartados de la pagina
 function Navbar() {
     const {isAuthenticated,setIsAuthenticated} =useAuth();
