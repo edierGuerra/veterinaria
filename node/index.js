@@ -9,7 +9,7 @@ const app = express()
 const FASTAPI_BASE_URL = process.env.FASTAPI_BASE_URL;
 
 // Middleware para habilitar CORS
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
 // Middleware para logging
@@ -113,8 +113,11 @@ app.put("/actualizarVeterinario", async (req, res) => {
     }
 });
 
-app.post("/RegistrarPropietario", async (req, res) => {
-    const { idPropietario, nombresPropietario, direccionPropietario, telefonoPropietario, correoPropietario } = req.body;
+
+
+
+app.post("/RegistrarMascota", async (req, res) => {
+    const { nameMascota,colorMascota,especieMascota,razaMascota,idPropietario,idVeterinario } = req.body;
 
     // if (!id || !names || !lastNames || !address || !phone || !professionalCard) {
     //     return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el veterinario' });
@@ -122,24 +125,25 @@ app.post("/RegistrarPropietario", async (req, res) => {
 
     try {
         // envio los datos de las credenciales a Fastapi
-        const fastApiResponse = await axios.post(`${process.env.FASTAPI_BASE_URL}/api/v1/propietario/`, {
-            idPropietario:idPropietario,
-            nombresPropietario:nombresPropietario,
-            direccionPropietario:direccionPropietario,
-            telefonoPropietario:telefonoPropietario,
-            correoPropietario:correoPropietario,
+        const fastApiResponse = await axios.post(`${process.env.FASTAPI_BASE_URL}/api/v1/pets/register`, {
+            nombre:nameMascota,
+            especie: especieMascota,
+            raza: razaMascota,
+            color: colorMascota,
+            id_dueno: idPropietario,
+            id_veterinario: idVeterinario
         },{
             headers:{
                 'Content-Type':'application/json'
             }
         });
-        console.log("enviando datos mascota afazt api")
+        console.log("enviando datos mascota a fazt api")
 
         // si FastAPI valida, crear el token con los datos adicionales
         const userData = fastApiResponse.data // datos de la respuesta de FastAPI
 
         return res.status(201).json({
-            message: "registered owner",
+            message: "registered pet",
             userData: userData
         });
     } catch (error) {
@@ -152,11 +156,8 @@ app.post("/RegistrarPropietario", async (req, res) => {
     res.status(500).json({ error: "Error interno del servidor"})
     }
 });
-
-
-
-app.post("/RegistrarMascota", async (req, res) => {
-    const { nameMascota, colorMascota, razaMascota, idPropietario, idVeterinario } = req.body;
+app.post("/RegistrarPropietario", async (req, res) => {
+    const { idPropietario, nombresPropietario,apellidosPropietario, direccionPropietario, telefonoPropietario, correoPropietario } = req.body;
 
     // if (!id || !names || !lastNames || !address || !phone || !professionalCard) {
     //     return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el veterinario' });
@@ -164,24 +165,25 @@ app.post("/RegistrarMascota", async (req, res) => {
 
     try {
         // envio los datos de las credenciales a Fastapi
-        const fastApiResponse = await axios.post(`${process.env.FASTAPI_BASE_URL}/api/v1/pets/`, {
-            nameMascota:nameMascota,
-            colorMascota: colorMascota,
-            razaMascota: razaMascota,
-            idPropietario: idPropietario,
-            idVeterinario: idVeterinario,
+        const fastApiResponse = await axios.post(`${process.env.FASTAPI_BASE_URL}/api/v1/propietario/register`, {
+            numero_documento:idPropietario,
+            nombres:nombresPropietario,
+            apellidos:apellidosPropietario,
+            direccion:direccionPropietario,
+            telefono:telefonoPropietario,
+            correo_electronico:correoPropietario,
         },{
             headers:{
                 'Content-Type':'application/json'
             }
         });
-        console.log("enviando datos mascota afazt api")
+        console.log("enviando datos mascota a fazt api")
 
         // si FastAPI valida, crear el token con los datos adicionales
         const userData = fastApiResponse.data // datos de la respuesta de FastAPI
 
         return res.status(201).json({
-            message: "registered pet",
+            message: "registered owner",
             userData: userData
         });
     } catch (error) {

@@ -4,7 +4,10 @@
     justify-items: center;
     align-items: center;
     gap: 40px;
-    background-color: #6f8a43;
+    background-image: url("../../assets/Veterinario/logoHome_veterinario.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -17,6 +20,10 @@
     align-items: center;
     gap: 70px;
     padding-bottom: 140px;
+    background-color: rgba(94, 65, 47, .4);
+    backdrop-filter: blur(2px);
+    padding: 100px;
+    border-radius: 20px;
 
 
 }
@@ -29,44 +36,44 @@
 .container-opciones{
     margin-top: 15px;
     position: relative;
-    margin-left: 850px;
+    margin-left: 800px;
 }
 .container-opciones h2{
-    padding: 3px;
+    padding: 10px;
+    font-size: 30px;
     border-radius: 5px;
     color: #fff;
-
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .container-desplegables{
+
+    color: #fff;
     font-size: 20px;
     font-weight: bold;
     display: flex;
     flex-direction: row;
     gap: 10px;
+    transition: .4s;
+    padding: 0 30px;
 }
-details{
-    transition: all 0.3s ease-in-out;
-}
+
+
 /* Desplegables */
 .desplegable-registrar{
     margin-top: 15px;
     cursor: pointer;
-    color: black;
 }
 .desplegable-consultar{
     margin-top: 15px;
     cursor: pointer;
-    color: black;
 }
 .desplegable-actualizar{
     margin-top: 15px;
     cursor: pointer;
-    color: black;
 }
 
 
-/* Aplicando el before */
+/* Aplicando el before *//* 
 .desplegable-registrar::before{
     content: "";
     position: absolute;
@@ -115,56 +122,61 @@ details{
 .desplegable-actualizar:hover::before{
     transform: translateY(-50%) scale(1);
     
-}
+} */
 /* Opciones */
 .opciones-registrar{
+    font-size: 18px;
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 5px;
     margin-left: 70px;
     background-color:#434f54;
-    padding: 5px;
+    padding: 4px;
     opacity: 1px;
     color: #fff;
     border-radius:10px;
-
 }
 .opciones-consultar{
+    font-size: 18px;
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: left;
     text-align: left;
+    margin-top: 5px;
     margin-left: 70px;
     background-color:#434f54;
     opacity: 1px;
-    padding: 5px;
+    padding: 4px;
     color: #fff;
-    width: 170px;
+    width: 200px;
     border-radius:10px;
 
 }
 .opciones-actualizar{
+    font-size: 18px;
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: left;
     text-align: left;
-    margin-left: 70px;
+    margin-top: 5px;
+    margin-left: 35px;
     background-color:#434f54;
     opacity: 1px;
-    padding: 5px;
+    padding: 4px 6px;
     color: #fff;
-    width: 170px;
+    width: 200px;
     border-radius:10px;
 
 }
 /* Contenedor configuracion */
 .content-Settings{
     position: absolute;
-    margin-top: -80px;
-    margin-left: -940px;
+    margin-top: -90px;
+    margin-left: -870px;
     display: flex;
     flex-direction: row-reverse;
     gap: 30px;
@@ -203,9 +215,14 @@ details{
     margin: -110px 50px 50px 100px;
     padding: 20px;
     width: 300px;
-    background-color: rgba(111, 138, 67, .90);
+    background-color:rgba(189, 189, 189, .2)
+    ;
+    backdrop-filter: blur(2px);
     border-radius: 10px;
     border:2px solid #c5bfbf;
+}
+.form-update-veterinario h2{
+    color: black;
 }
 
 .form-update-veterinario > *:not(label) {
@@ -213,7 +230,7 @@ details{
 }
 .form-update-veterinario label{ 
     margin: 15px 0 4px 20px;
-    color: #354126;
+    color: #efefef;
     font-weight: bold;
 }
 
@@ -231,7 +248,7 @@ details{
 }
 /* inputs predefinidos */
 .inputs-prohividos{
-    color: #394329;
+    color:#bdbdbd ;
 }
 
 
@@ -241,19 +258,16 @@ details{
 .btn-update{
     border: 1px solid #fff;
     margin: 24px 0 10px 0;
-    color: #fff;
     font-size: 20px;
     font-weight: bold;
-    background-color: #3d4b29;
+    background-color: #dcdcdc;
     padding: 5px;
     border-radius: 5px;
-    transition: .3s;
+    transition: .7s;
 }
 .btn-update:hover{
     cursor: pointer;
-    background-color: #fff;
-    color: #3d4b29;
+    background-color: #525252;
+    color: #fff;
     font-weight: bold;
-    font-size: 21px;
-    padding: 7px;
 }

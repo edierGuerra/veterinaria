@@ -1,6 +1,7 @@
 //Archivo que se encargara de realizar la conexion con las APIS necesarias
 import { useAuth } from "./Context/AuthProvider"; // ✅ Importamos el contexto
-import homeveterinario from './Components/Apartado-Veterinario/HomeVeterinario'
+import homeveterinario from './Components/Apartado-Veterinario/HomeVeterinario'; 
+import RegistrarMascota from './Components/Apartado-Veterinario/OpcionesVeterinario/Registrar/RegistrarMascota'
 import axios from 'axios'; //Libreria que permite realizar solicitudees HTTP
 // Funcion que realiza peticiones a la api
 export const sendDataRegister=async(correo,password1)=>{
@@ -75,26 +76,62 @@ export const updateVeterinario = async(idVeterinario,names,lastNames,address,pho
         else{
             alert("ups, Ocurrio un error, Vuelve a intentarlo mas tarde");
         }
-
     }catch(error){
         console.log('error',error)
     }
 };
-
-export const sendDataMascota = async (idMascota,nameMascota,colorMascota,razaMascota,idVeterinario)=>{
+export const sendDataMascota = async (nameMascota,colorMascota,especieMascota,razaMascota,idPropietario,idVeterinario,navigate)=>{
     try{
-        const responde = await axios.post("url",{
-            idMascota:idMascota,
+        const responde = await axios.post("http://localhost:3000/RegistrarMascota",{
             nameMascota:nameMascota,
             colorMascota:colorMascota,
+            especieMascota:especieMascota,
             razaMascota:razaMascota,
+            idPropietario:Number(idPropietario),
             idVeterinario:idVeterinario
         },{
             headers:{
                 'Content-Type':'application/json'
             }
         });
+        if(responde.status=== 201){
+            alert("Mascota Registrada exitosamente");
+            navigate("/registrarvisita");
+        }else{
+            alert("Ups. Ha ocurrido un error inesperado")
+        };
     }catch(error){
         console.log('error',error)
+    }
+};
+
+export const sendDataPropietario = async(idPropietario, nombresPropietario,apellidosPropietario, direccionPropietario, telefonoPropietario, correoPropietario,navigate
+)=>{
+    
+    try{
+        const response = await axios.post("http://localhost:3000/RegistrarPropietario",{
+            idPropietario:idPropietario, 
+            nombresPropietario:nombresPropietario, 
+            apellidosPropietario:apellidosPropietario,
+            direccionPropietario:direccionPropietario, 
+            telefonoPropietario:telefonoPropietario, 
+            correoPropietario:correoPropietario
+        },{
+            headers:{
+                'Content-Type':'application/json'
+            }
+        });
+        if(response.status === 201){
+            alert("Propietario Registrado Exitosamente");
+            navigate("/registrarmascota");
+            console.log(response.data)
+            //localStorage.setItem("idpropietario",response.data.numero_documento);
+
+        }else{
+            alert("Ups! ha ocurrido un error")
+        }
+    }catch(error){
+        console.log('error',error)
+
     }
 };
