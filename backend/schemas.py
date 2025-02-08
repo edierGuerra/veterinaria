@@ -15,6 +15,7 @@ class DuenoCreate(DuenoBase):
     pass  # Usa los mismos atributos para crear un dueño
 
 class DuenoResponse(DuenoBase):
+
     class Config:
         from_attributes = True
 
