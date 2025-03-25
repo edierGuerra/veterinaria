@@ -208,6 +208,17 @@ app.post("/RegistrarPropietario", async (req, res) => {
     }
 });
 
+app.get("/buñuelos123", async (req, res) => {
+    try {
+        const response = await axios.get("/api/v1/pets/reads"); // URL del backend FastAPI
+        res.json(response.data); // Enviar los datos a React
+    } catch (error) {
+        console.error("Error al obtener datos de FastAPI:", error);
+        res.status(500).json({ error: "Error al obtener datos" });
+    }
+});
+
+
 
 function generateAccessToken(credentials) {
     return jwt.sign(credentials, process.env.SECRET, { expiresIn: '5m' });
