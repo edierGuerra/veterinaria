@@ -7,6 +7,7 @@ require("dotenv").config();
 
 const app = express()
 const FASTAPI_BASE_URL = process.env.FASTAPI_BASE_URL;
+const PORT = 3000
 
 // Middleware para habilitar CORS
 app.use(cors());
@@ -113,6 +114,16 @@ app.put("/actualizarVeterinario", async (req, res) => {
     }
 });
 
+app.get("/buñuelos123", async (req, res) => {
+    try {
+        const response = await axios.get("/api/v1/pets/reads"); // URL del backend FastAPI
+        res.json(response.data); // Enviar los datos a React
+    } catch (error) {
+        console.error("Error al obtener datos de FastAPI:", error);
+        res.status(500).json({ error: "Error al obtener datos" });
+    }
+});
+
 
 
 
@@ -197,6 +208,17 @@ app.post("/RegistrarPropietario", async (req, res) => {
     }
 });
 
+app.get("/buñuelos123", async (req, res) => {
+    try {
+        const response = await axios.get("/api/v1/pets/reads"); // URL del backend FastAPI
+        res.json(response.data); // Enviar los datos a React
+    } catch (error) {
+        console.error("Error al obtener datos de FastAPI:", error);
+        res.status(500).json({ error: "Error al obtener datos" });
+    }
+});
+
+
 
 function generateAccessToken(credentials) {
     return jwt.sign(credentials, process.env.SECRET, { expiresIn: '5m' });
@@ -213,7 +235,7 @@ app.use((err, req, res, next) => {
 });
 
 
-const port = 3000
-app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
