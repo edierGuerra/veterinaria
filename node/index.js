@@ -10,7 +10,11 @@ const FASTAPI_BASE_URL = process.env.FASTAPI_BASE_URL;
 const PORT = 3000
 
 // Middleware para habilitar CORS
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173", // Reemplaza con la URL del frontend en producción
+    methods: ["GET", "POST"], // Métodos permitidos
+    allowedHeaders: ["Content-Type", "Authorization"] // Headers permitidos
+}));
 app.use(express.json());
 
 // Middleware para logging
@@ -114,19 +118,6 @@ app.put("/actualizarVeterinario", async (req, res) => {
     }
 });
 
-app.get("/buñuelos123", async (req, res) => {
-    try {
-        const response = await axios.get("/api/v1/pets/reads"); // URL del backend FastAPI
-        res.json(response.data); // Enviar los datos a React
-    } catch (error) {
-        console.error("Error al obtener datos de FastAPI:", error);
-        res.status(500).json({ error: "Error al obtener datos" });
-    }
-});
-
-
-
-
 app.post("/RegistrarMascota", async (req, res) => {
     const { nameMascota,colorMascota,especieMascota,razaMascota,idPropietario,idVeterinario } = req.body;
 
@@ -208,15 +199,18 @@ app.post("/RegistrarPropietario", async (req, res) => {
     }
 });
 
-app.get("/buñuelos123", async (req, res) => {
+app.get("/pets/reads", async (req, res) => {
     try {
-        const response = await axios.get("/api/v1/pets/reads"); // URL del backend FastAPI
+        const response = await axios.get(`${process.env.FASTAPI_BASE_URL}/api/v1/pets/reads`); // URL del backend FastAPI
         res.json(response.data); // Enviar los datos a React
+        console.log(response.data)
     } catch (error) {
         console.error("Error al obtener datos de FastAPI:", error);
         res.status(500).json({ error: "Error al obtener datos" });
     }
 });
+
+
 
 
 

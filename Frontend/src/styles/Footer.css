@@ -6,10 +6,10 @@
 footer{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
     align-items: center;
-    background-color: #501c08;
-    padding: 13px;
+    /* background-color: #499fc3; */
+    background-color: #001;
+    padding:13px;
     gap: 20px;
 }
 .info{
@@ -17,6 +17,7 @@ footer{
     flex-direction: column;
     gap: 10px;
     margin: 4px;
+    color: wheat;
 }
 
 .proyect h2{
@@ -32,25 +33,30 @@ footer{
     align-items: center;
 }
 .authors h2{
-    color:#ebe8ff ;
+    color:#295975 ;
     letter-spacing: 1.5px;
 }
 
 .authors ul{
     display: flex;
     flex-direction: row;
-    gap: 8px;
-    color: #5abdb8;
+    gap: 6px;
+    color: #295975;
     font-size: 17px;
     font-weight: bold;
-    letter-spacing: .5px;
+    letter-spacing: .3px;
 }
 .authors ul li:not(:last-child)::after{
     content: "|";
     color: #fff;
     font-size: 800;
     margin-left: 8px;
-    margin-right: 8px;
+    margin-right: 0px;
+}
+
+.authors ul li a{
+    text-decoration: none;
+    color: #fff;
 }
 
 .redes{
@@ -69,6 +75,7 @@ footer{
     display: flex;
     flex-direction: row;
     gap: 35px;
+
 }
 .link a{
     letter-spacing: 1px;
@@ -81,7 +88,10 @@ footer{
     color:#7d3711;
 }
 .icon{
-    font-size:30px;
+    font-size:40px;
+    border: 2px solid;
+    padding: 5px;
+    border-radius: 30px;
 }
 .tiktok{
     color: #ffcf;
@@ -96,4 +106,21 @@ footer{
 }
 .whatsaap{
     color: #99d665;
+}
+
+.div-ubicacion {
+    padding: 4px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+.div-ubicacion p{
+    color: #295975;
+    font-size: 15px;
+}
+
+.icon-ubicacion{
+    color: #48e;
+    font-size:30px;
 }

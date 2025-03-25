@@ -18,8 +18,7 @@ import RegistrarPropietario from './Components/Apartado-Veterinario/OpcionesVete
 import RegistrarVisita from './Components/Apartado-Veterinario/OpcionesVeterinario/Registrar/RegistrarVisita'
 //Consultar
 import ConsultarMascota from './Components/Apartado-Veterinario/OpcionesVeterinario/Consultar/ConsultarMascota'
-import ConsultarMascotas from './Components/Apartado-Veterinario/OpcionesVeterinario/Consultar/ConsultarMascotas'
-import ConsultarPropietario from './Components/Apartado-Veterinario/OpcionesVeterinario/Consultar/ConsultarPropietario'
+import ConsultarPropietario from './Components/Apartado-Veterinario/OpcionesVeterinario/Consultar/ConsultarPropietario' 
 
 
 function App() {
@@ -38,7 +37,6 @@ function App() {
           <Route path='/registrarpropietario' element={<RequireAuth><RegistrarPropietario/></RequireAuth>}/>
           <Route path='/registrarvisita' element={<RequireAuth><RegistrarVisita/></RequireAuth>}/>
           <Route path='/consultarmascota' element={<RequireAuth><ConsultarMascota/></RequireAuth>}/>
-          <Route path='/consultarmascotas' element={<RequireAuth><ConsultarMascotas/></RequireAuth>}/>
           <Route path='/consultarpropietario' element={<RequireAuth><ConsultarPropietario/></RequireAuth>}/>
 
           
