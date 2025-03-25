@@ -4,17 +4,17 @@ from typing import List, Optional
 
 ### 📌 ESQUEMA DUEÑO ###
 class DuenoBase(BaseModel):
-    nombres: str = Field(..., min_length=1, max_length=100, description="Nombres del dueño")
-    apellidos: str = Field(..., min_length=1, max_length=100, description="Apellidos del dueño")
-    direccion: Optional[str] = Field(None, max_length=150, description="Dirección del dueño")
-    telefono: Optional[str] = Field(None, min_length=7, max_length=15, description="Teléfono del dueño")
-    correo_electronico: EmailStr = Field(..., description="Correo electrónico válido")
+    id:int #= Field(..., description="numero de documento del propietario")
+    nombres: str #= Field(..., min_length=1, max_length=100, description="Nombres del dueño")
+    apellidos: str #= Field(..., min_length=1, max_length=100, description="Apellidos del dueño")
+    direccion: Optional[str] #= Field(None, max_length=150, description="Dirección del dueño")
+    telefono: Optional[str] #= Field(None, min_length=7, max_length=15, description="Teléfono del dueño")
+    correo_electronico: EmailStr #= Field(..., description="Correo electrónico válido")
 
 class DuenoCreate(DuenoBase):
     pass  # Usa los mismos atributos para crear un dueño
 
 class DuenoResponse(DuenoBase):
-    id: int = Field(..., description="ID del dueño")
 
     class Config:
         from_attributes = True
@@ -40,8 +40,8 @@ class VeterinarioUpdate(BaseModel):
     tarjeta_profesional: Optional[str] 
 
 class VeterinarioResponse(VeterinarioBase):
-    id: int = Field(..., description="ID del veterinario")
-    username: str = Field(max_length=10, min_length=5)
+    id: int #= Field(..., description="ID del veterinario")
+    username: str #= Field(max_length=10, min_length=5)
 
     class Config:
         from_attributes = True
@@ -51,19 +51,19 @@ class Login(BaseModel):
     password: str 
 ### 📌 ESQUEMA MASCOTA ###
 class MascotaBase(BaseModel):
-    nombre: str = Field(..., min_length=1, max_length=50, description="Nombre de la mascota")
-    color: Optional[str] = Field(None, max_length=30, description="Color de la mascota")
-    especie: str = Field(..., min_length=1, max_length=50, description="Especie de la mascota")
-    raza: Optional[str] = Field(None, max_length=50, description="Raza de la mascota")
+    nombre: str #= Field(..., min_length=1, max_length=50, description="Nombre de la mascota")
+    color: Optional[str] #= Field(None, max_length=30, description="Color de la mascota")
+    especie: str #= Field(..., min_length=1, max_length=50, description="Especie de la mascota")
+    raza: Optional[str] #= Field(None, max_length=50, description="Raza de la mascota")
 
 class MascotaCreate(MascotaBase):
-    id_dueno: int = Field(..., description="ID del dueño")
-    id_veterinario: Optional[int] = Field(None, description="ID del veterinario (opcional)")
+    id_dueno: int #= Field(..., description="ID del dueño")
+    id_veterinario: Optional[int] #= Field(None, description="ID del veterinario (opcional)")
 
 class MascotaResponse(MascotaBase):
-    id: int = Field(..., description="ID de la mascota")
-    id_dueno: int = Field(..., description="ID del dueño")
-    id_veterinario: Optional[int] = Field(None, description="ID del veterinario (opcional)")
+    id: int #= Field(..., description="ID de la mascota")
+    id_dueno: int #= Field(..., description="ID del dueño")
+    id_veterinario: Optional[int] #= Field(None, description="ID del veterinario (opcional)")
 
     class Config:
         from_attributes = True
@@ -81,7 +81,7 @@ class VisitaBase(BaseModel):
 class VisitaCreate(VisitaBase):
     mascota_id: int = Field(..., description="ID de la mascota")
     id_profesional: int = Field(..., description="ID del veterinario")
-    historial_clinico_id: int = Field(..., description="ID del historial clínico")
+    #historial_clinico_id: int = Field(..., description="ID del historial clínico")
 
 class VisitaResponse(VisitaBase):
     id: int = Field(..., description="ID de la visita")

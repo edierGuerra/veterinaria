@@ -47,8 +47,15 @@ def create_pet(db:Session,id_owner:int, id_veterinarian:int, name:str, color:str
     db.refresh(pet)
     return pet
 
-def read_pet():
-    pass
+def read_pet(db:Session, name_pet:str):
+    pet = db.query(Mascota).filter(Mascota.nombre == name_pet).all()
+    if not pet: 
+        return []
+    return pet
+
+def read_pets(db:Session):
+    pet = db.query(Mascota).all()
+    return pet
 
 def update_pet(db:Session, id_pet:int, name:str = None, id_veterinarian:int = None):
     updated_pet = db.query(Mascota).filter(Mascota.id == id_pet).first()
@@ -68,8 +75,8 @@ def delete_pet(db:Session, id_pet:int):
     return {"message":"Mascota eliminada satisfactoriamente"}
 
 # CRUD propietarios
-def create_owner(db:Session, names:str, last_names:str, address:str, phone:str, email:str):
-    owner = Dueno(nombres = names, apellidos = last_names, direccion = address, telefono = phone, correo_electronico = email)
+def create_owner(db:Session,n_documento:int, names:str, last_names:str, address:str, phone:str, email:str):
+    owner = Dueno(id = n_documento, nombres = names, apellidos = last_names, direccion = address, telefono = phone, correo_electronico = email)
     
     db.add(owner)
     db.commit()

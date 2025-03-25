@@ -44,19 +44,22 @@ function HomeVeterinario() {
     }
     return (
     <div className="container-home">
-        <div className="container-info" onClick={()=>{
+        <div data-aos="fade-right" className="container-info" onClick={()=>{
         setMostrarFormulario(false);
     }}>
-            <h1> Bienvenido Veterinario {nameveterinario}</h1>
-            <p>Tarjeta Profesional</p>
-            <ul>
+            <h1 data-aos="fade-up"
+            data-aos-duration="3000"> Bienvenido Veterinario {nameveterinario}</h1>
+            <p data-aos="fade-up"
+            data-aos-duration="3000">Tarjeta Profesional</p>
+            <ul data-aos="fade-up"
+            data-aos-duration="3000">
                 <li>###</li>
                 <li>###</li>
                 <li>###</li>
             </ul>
         </div>
         <div className="container-opciones">
-            <h2>¿Qué deseas hacer hoy?</h2>
+            <h2 >¿Qué deseas hacer hoy?</h2>
             <div className="container-desplegables">
                 <details>
                     <summary onClick={()=>{
@@ -68,7 +71,7 @@ function HomeVeterinario() {
                         <ul className="opciones-registrar">
                             <li><a href="/registrarmascota">Registrar Mascota</a></li>
                             <li><a href="/registrarpropietario">Registrar Propietario</a></li>
-                            <li>Registrar visita</li>
+                            <li><a href="/registrarvisita">Registrar visita</a></li>
                         </ul>
                     )}
                 </details>
@@ -80,9 +83,9 @@ function HomeVeterinario() {
                     }} className="desplegable-consultar">Consultar</summary>
                     {mostrarConsultar &&(
                         <ul className="opciones-consultar">
-                            <li>Consultar Mascota</li>
-                            <li>Consultar Mascotas</li>
-                            <li>Consultar Propietario</li>
+                            <li><a href="/consultarmascota">Consultar Mascota</a></li>
+                            <li><a href="/consultarmascotas">Consultar Mascotas</a></li>
+                            <li><a href="/consultarpropietario">Consultar Propietario</a></li>
                         </ul>
                     )}
                 </details>
@@ -100,7 +103,7 @@ function HomeVeterinario() {
                     )}
                 </details>
             </div>
-            <div data-aos="zoom-out" className="content-Settings">
+            <div className="content-Settings">
                 <details>
                     <summary>{<RiListSettingsLine className="icon-settings"/>}</summary>
                     <div className="opc-settings">

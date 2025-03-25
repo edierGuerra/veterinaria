@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from schemas import MascotaCreate, MascotaResponse
-from crud import create_pet
+from crud import create_pet, read_pet, read_pets
 from sqlalchemy.orm import Session
 from database import get_db
 
@@ -18,5 +18,17 @@ def registrar_mascota(data_form:MascotaCreate, db:Session = Depends(get_db)):
         id_owner=data_form.id_dueno,
         id_veterinarian=data_form.id_veterinario
     )
+
+    return mascota 
+
+@router.get("/read")
+def consultar_mascota(nombre_mascota:str, db:Session = Depends(get_db)):
+    mascota = read_pet(db,nombre_mascota)
+
+    return mascota 
+
+@router.get("/reads")
+def consultar_mascotas(db:Session = Depends(get_db)):
+    mascota = read_pets(db)
 
     return mascota 
