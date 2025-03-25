@@ -11,7 +11,7 @@ app = FastAPI()
 
 # Lista de orígenes permitidos (React suele correr en localhost:3000 durante el desarrollo)
 origins = [
-    "http://localhost:5174",  # Origen del frontend en desarrollo
+    "http://localhost:5173",  # Origen del frontend en desarrollo
 ]
 
 # Agregar el middleware de CORS

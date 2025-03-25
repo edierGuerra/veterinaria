@@ -1,5 +1,5 @@
 import '../styles/NavBar.css'
-import { GoHome } from "react-icons/go";
+import { HiOutlineHome } from "react-icons/hi";
 import { GrContactInfo } from "react-icons/gr";
 import { AiOutlineLogin } from "react-icons/ai";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -36,7 +36,7 @@ function Navbar() {
         <div className="container-opc">
             <Link to={"/"}>
                 <span title='Home'>
-                    {<GoHome  className='opc home'/>}
+                    {<HiOutlineHome  className='opc home'/>}
                 </span>
             </Link>
 

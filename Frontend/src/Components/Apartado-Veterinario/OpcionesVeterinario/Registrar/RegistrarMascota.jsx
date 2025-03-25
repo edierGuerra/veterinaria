@@ -25,6 +25,7 @@ function RegistrarMascota() {
         console.log(razaMascota)
         console.log(idPropietario)
         console.log(idVeterinario)
+        
         sendDataMascota(nameMascota,colorMascota,especieMascota,razaMascota,idPropietario,idVeterinario,navigate);
         //EN caso tal de que el id del propietario no exista, mostraremos el siguiente aviso ---> "Al parecer ese propietario no existe, deseas registrar un propietario si no"
         //En caso de que diga que si, redirgir a register propietario

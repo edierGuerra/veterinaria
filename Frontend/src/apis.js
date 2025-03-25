@@ -104,7 +104,6 @@ export const sendDataMascota = async (nameMascota,colorMascota,especieMascota,ra
         console.log('error',error)
     }
 };
-
 export const sendDataPropietario = async(idPropietario, nombresPropietario,apellidosPropietario, direccionPropietario, telefonoPropietario, correoPropietario,navigate
 )=>{
     
@@ -135,3 +134,6 @@ export const sendDataPropietario = async(idPropietario, nombresPropietario,apell
 
     }
 };
+
+  
+    

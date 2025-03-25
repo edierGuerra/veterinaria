@@ -1,0 +1,109 @@
+.titulo{
+    cursor: pointer;
+    font-size: 45px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    padding:25px ;
+    background-color:  #fff;
+    text-align: center;
+    color: #295975;
+    /*    border-width: 2px 0 2px 0;
+    border-color: #c4dffa;
+    border-style: solid; */
+    transition: .4s ease-in-out;
+}
+.titulo:hover{
+    background-color: #132936;
+    color: #fff;
+
+}
+.container-carrusel{
+    max-width:1280px;
+    height: auto;
+    overflow: hidden;
+}
+
+.container-carrusel ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: slide 20s infinite alternate-reverse ease-in-out;
+}
+
+.container-carrusel li{
+    width: 100%;
+    list-style: none;
+    position: relative;
+
+}
+.texto{
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px ;
+    top: 400px;
+    gap: 70px;
+    color: #ffffff;
+    left: 225px;
+    opacity: 0;
+    visibility: hidden; /* evita que ocupe espacio */
+    transition: opacity 0.9s ease-in-out;
+}
+.texto:hover{
+    opacity: 1;
+    visibility:visible ;
+    transition: opacity 1s ease-in-out;
+}
+.texto h2{  
+    font-size: 45px;
+    margin-bottom: 35px;
+    /*    background:linear-gradient(to top, #047774,#cce1f6 );
+    background-clip: text;
+    color: transparent; */
+    color: #fff;
+    backdrop-filter: blur(1px);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.texto p{
+    color:white;
+    letter-spacing: 1.4px;
+    text-wrap: balance;
+    width: 900px;
+
+
+}
+
+.container-carrusel img{
+    width: 80%;
+    height: 84%;
+    margin: 75px 155px ;
+
+}   
+.container-carrusel img:hover{
+    cursor: pointer;
+    mask-image: linear-gradient(
+        #dd710b 35%,
+        transparent
+    );
+    
+}
+.container-carrusel img:hover + .texto{
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes slide {
+    0% {margin-left: 0%;}
+    20% {margin-left: 0%;}
+
+    25% {margin-left: -100%;}
+    45% {margin-left: -100%;}
+
+    50% {margin-left: -200%;}
+    70% {margin-left: -200%;}
+
+    75% {margin-left: -300%;}
+    100% {margin-left: -300%;}
+} 

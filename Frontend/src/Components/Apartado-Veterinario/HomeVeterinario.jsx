@@ -33,7 +33,6 @@ function HomeVeterinario() {
     //Funcion del formulario que llama la API
     const handleSubmit=(e)=>{
         e.preventDefault();
-
         console.log(names);
         console.log(lastNames);
         console.log(address);
@@ -43,7 +42,7 @@ function HomeVeterinario() {
         //setMostrarFormulario(false);
     }
     return (
-    <div className="container-home">
+    <div className="container-home-veterinario">
         <div data-aos="fade-right" className="container-info" onClick={()=>{
         setMostrarFormulario(false);
     }}>
@@ -71,7 +70,6 @@ function HomeVeterinario() {
                         <ul className="opciones-registrar">
                             <li><a href="/registrarmascota">Registrar Mascota</a></li>
                             <li><a href="/registrarpropietario">Registrar Propietario</a></li>
-                            <li><a href="/registrarvisita">Registrar visita</a></li>
                         </ul>
                     )}
                 </details>
@@ -84,7 +82,6 @@ function HomeVeterinario() {
                     {mostrarConsultar &&(
                         <ul className="opciones-consultar">
                             <li><a href="/consultarmascota">Consultar Mascota</a></li>
-                            <li><a href="/consultarmascotas">Consultar Mascotas</a></li>
                             <li><a href="/consultarpropietario">Consultar Propietario</a></li>
                         </ul>
                     )}

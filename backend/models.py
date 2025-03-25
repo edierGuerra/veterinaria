@@ -30,7 +30,6 @@ class Veterinario(Base):
     direccion: Mapped[str] = mapped_column(String(150), nullable=True)
     telefono: Mapped[str] = mapped_column(String(15), nullable=True)
     tarjeta_profesional: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)  # Identificación única
-
     # Relación con Mascotas (1 veterinario atiende muchas mascotas)
     mascotas:Mapped[List["Mascota"]] = relationship(back_populates="veterinario")
 
@@ -51,17 +50,14 @@ class Veterinario(Base):
             recomendaciones=recomendaciones
         )
         return nueva_visita  # Esto luego se guardaría en la sesión de la DB.
-
 ### 📌 MODELO MASCOTA ###
 class Mascota(Base):
     __tablename__ = "mascotas"
-
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True, nullable=False)
     nombre: Mapped[str] = mapped_column(String(50), nullable=False)
     color: Mapped[str] = mapped_column(String(30), nullable=True)
     especie: Mapped[str] = mapped_column(String(50), nullable=False)  
-    raza: Mapped[str] = mapped_column(String(50), nullable=True)  
-
+    raza: Mapped[str] = mapped_column(String(50), nullable=True)
     # Claves foráneas
     id_dueno: Mapped[int] = mapped_column(Integer, ForeignKey("duenos.id"), nullable=False)
     id_veterinario: Mapped[int] = mapped_column(Integer, ForeignKey("veterinarios.id"), nullable=True)
